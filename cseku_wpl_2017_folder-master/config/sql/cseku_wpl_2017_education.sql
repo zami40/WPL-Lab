@@ -1,0 +1,1267 @@
+-- phpMyAdmin SQL Dump
+<<<<<<< b989aea6e102fa46ba9139b179dd166f171a0dda
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Feb 09, 2017 at 06:00 PM
+-- Server version: 5.7.14
+-- PHP Version: 5.6.25
+=======
+-- version 4.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Apr 11, 2017 at 01:57 AM
+-- Server version: 10.1.10-MariaDB
+-- PHP Version: 7.0.3
+>>>>>>> version 2 change
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `cseku_wpl_2017_education`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_club`
+--
+
+CREATE TABLE `tbl_club` (
+  `ID` varchar(40) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `CoverPhoto` varchar(100) NOT NULL,
+  `Description` varchar(300) NOT NULL,
+  `CreationDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_club_member`
+--
+
+CREATE TABLE `tbl_club_member` (
+  `ClubID` varchar(40) NOT NULL,
+  `MemberID` varchar(40) NOT NULL,
+  `Designation` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_club_module`
+--
+
+CREATE TABLE `tbl_club_module` (
+  `ClubID` varchar(20) NOT NULL,
+  `ModuleName` varchar(50) NOT NULL,
+  `IsVisible` tinyint(1) NOT NULL,
+  `PositionX` int(11) NOT NULL,
+  `PositionY` int(11) NOT NULL,
+  `SizeX` int(11) NOT NULL,
+  `SizeY` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course`
+--
+
+CREATE TABLE `tbl_course` (
+  `ID` varchar(40) NOT NULL,
+  `CourseNo` varchar(40) NOT NULL,
+  `Title` varchar(100) NOT NULL,
+  `Credit` double NOT NULL,
+  `CourseTypeID` varchar(40) NOT NULL,
+  `DisciplineID` varchar(40) NOT NULL,
+  `IsDeleted` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course_marks_attendance`
+--
+
+CREATE TABLE `tbl_course_marks_attendance` (
+  `CourseID` varchar(40) NOT NULL,
+  `TeacherID` varchar(40) NOT NULL,
+  `SessionID` varchar(40) NOT NULL,
+  `TermID` varchar(40) NOT NULL,
+  `StudentID` varchar(40) NOT NULL,
+  `ClassDate` date NOT NULL,
+  `IsPresent` tinyint(1) NOT NULL,
+  `UseFace` tinyint(1) NOT NULL,
+  `UseFinger` tinyint(1) NOT NULL,
+  `UseSheet` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course_marks_attendance_publish`
+--
+
+CREATE TABLE `tbl_course_marks_attendance_publish` (
+  `CourseID` varchar(40) NOT NULL,
+  `SessionID` varchar(40) NOT NULL,
+  `TeacherID` varchar(40) NOT NULL,
+  `TermID` varchar(40) NOT NULL,
+  `StudentID` varchar(40) NOT NULL,
+  `TotalAttendance` int(11) NOT NULL,
+  `TotalClass` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course_marks_result`
+--
+
+CREATE TABLE `tbl_course_marks_result` (
+  `CourseID` varchar(40) NOT NULL,
+  `TeacherID` varchar(40) NOT NULL,
+  `SessionID` varchar(40) NOT NULL,
+  `TermID` varchar(40) NOT NULL,
+  `StudentID` varchar(40) NOT NULL,
+  `MarksID` varchar(50) NOT NULL,
+  `MarksValue` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course_marks_result_publish`
+--
+
+CREATE TABLE `tbl_course_marks_result_publish` (
+  `CourseID` varchar(40) NOT NULL,
+  `TeacherID` varchar(40) NOT NULL,
+  `TermID` varchar(40) NOT NULL,
+  `SessionID` varchar(40) NOT NULL,
+  `StudentID` varchar(40) NOT NULL,
+  `MarksTotal` double NOT NULL,
+  `MarksGrade` varchar(10) NOT NULL,
+  `GPA` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course_marks_setup`
+--
+
+CREATE TABLE `tbl_course_marks_setup` (
+  `CourseID` varchar(40) NOT NULL,
+  `TeacherID` varchar(40) NOT NULL,
+  `SessionID` varchar(40) NOT NULL,
+  `TermID` varchar(40) NOT NULL,
+  `MarksID` varchar(50) NOT NULL,
+  `MarksHeader` varchar(20) NOT NULL,
+  `MarksMax` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course_resource`
+--
+
+CREATE TABLE `tbl_course_resource` (
+  `CourseID` varchar(40) NOT NULL,
+  `ResourceID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course_sessional_type`
+--
+
+CREATE TABLE `tbl_course_sessional_type` (
+  `ID` varchar(40) NOT NULL,
+  `Name` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course_student_registration`
+--
+
+CREATE TABLE `tbl_course_student_registration` (
+  `StudentID` varchar(40) NOT NULL,
+  `TermID` varchar(40) NOT NULL,
+  `CourseID` varchar(40) NOT NULL,
+  `SessionID` varchar(40) NOT NULL,
+  `IsRetake` tinyint(1) NOT NULL,
+  `IsApproved` tinyint(1) NOT NULL,
+  `IsDeleted` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course_teacher`
+--
+
+CREATE TABLE `tbl_course_teacher` (
+  `CourseID` varchar(40) NOT NULL,
+  `TeacherID` varchar(40) NOT NULL,
+  `SessionID` varchar(40) NOT NULL,
+  `TermID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course_teacher_registration`
+--
+
+CREATE TABLE `tbl_course_teacher_registration` (
+  `TeacherID` varchar(40) NOT NULL,
+  `SessionID` varchar(40) NOT NULL,
+  `TermID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_course_type`
+--
+
+CREATE TABLE `tbl_course_type` (
+  `ID` varchar(40) NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `SessionalTypeID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_discipline`
+--
+
+CREATE TABLE `tbl_discipline` (
+  `ID` varchar(40) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `SchoolID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_discipline`
+--
+
+INSERT INTO `tbl_discipline` (`ID`, `Name`, `SchoolID`) VALUES
+('{0CF37516-06FE-41CD-93AD-D2D1652509D6}', 'Mathematics', ''),
+('{560A0FC0-6221-497D-8D41-E584EE4BBEE3}', 'Architecture', ''),
+('{63F3C00B-6168-4FBD-AB01-7A1FE413BDDE}', 'Statistics', ''),
+('{AF41CC9F-3BCD-4952-9D02-17184CC40C79}', 'Urban and Rural Planning', ''),
+('{B34A0580-0B92-49BD-84FB-929297B104C5}', 'Electrical and Communication Engineering', ''),
+<<<<<<< b989aea6e102fa46ba9139b179dd166f171a0dda
+('{E03C2DC3-CAF3-477E-A851-0C11DF93FD3B}', 'Chemistry', ''),
+=======
+('{BCC60BE6-CDE1-9621-3872-D6A49B3C1807}', 'Chemestry', ''),
+>>>>>>> version 2 change
+('{E7280448-E379-424E-A11D-357F4334AC8D}', 'Physics', ''),
+('{FFDB1CB8-AF34-4381-8971-9784DCB516C5}', 'Computer Science and Engineering', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_discipline_resource`
+--
+
+CREATE TABLE `tbl_discipline_resource` (
+  `DisciplineID` varchar(40) NOT NULL,
+  `ResourceID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_discussion`
+--
+
+CREATE TABLE `tbl_discussion` (
+  `ID` varchar(40) NOT NULL,
+  `Title` varchar(150) NOT NULL,
+  `CategoryID` varchar(40) NOT NULL,
+  `Description` varchar(300) NOT NULL,
+  `Tag` varchar(200) NOT NULL,
+  `CreationDate` date NOT NULL,
+  `CreatorID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_discussion_category`
+--
+
+CREATE TABLE `tbl_discussion_category` (
+  `ID` varchar(40) NOT NULL,
+  `Name` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_discussion_comment`
+--
+
+CREATE TABLE `tbl_discussion_comment` (
+  `CommentID` varchar(50) NOT NULL,
+  `DiscussionID` varchar(40) NOT NULL,
+  `Comment` varchar(300) NOT NULL,
+  `CreatorID` varchar(40) NOT NULL,
+  `CommentIDTop` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_file`
+--
+
+CREATE TABLE `tbl_file` (
+  `ID` varchar(50) NOT NULL,
+  `CreatorID` varchar(40) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `Link` varchar(150) NOT NULL,
+<<<<<<< b989aea6e102fa46ba9139b179dd166f171a0dda
+  `DisciplineID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+=======
+  `DisciplineID` varchar(40) NOT NULL,
+  `CreationDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_file`
+--
+
+INSERT INTO `tbl_file` (`ID`, `CreatorID`, `Name`, `Link`, `DisciplineID`, `CreationDate`) VALUES
+('{0552A307-320E-0731-CB40-473DD312F2AE}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', '', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{05BD4B2B-357B-447A-4D72-5E5F26280D69}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/logonew.png', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{0857FD3B-8032-9688-0FEB-26BA8D364759}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{9E2E6363-A0FF-4C0F-B58F-D162725FB702}', 'data com book2.pdf', '{560A0FC0-6221-497D-8D41-E584EE4BBEE3}', '0000-00-00'),
+('{0CB6FC10-7121-57DA-FDE3-A84E1544C661}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{0D1D340F-A3C4-BF99-5F07-0D6F43BA63DB}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'line coding.pdf', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{1097DA30-A338-0244-5381-B38B492AB80E}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/SolaimanLipi_20-04-07.ttf', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{11AFCE5D-BDAC-F778-3045-D6E58A4CDCC6}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/sss.txt', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{13570384-BDBC-F9D9-542B-FC4A41D17C75}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'routine.xlsx', '{63F3C00B-6168-4FBD-AB01-7A1FE413BDDE}', '0000-00-00'),
+('{13F13DDF-1986-7914-EA27-8B82AA1F721E}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/SolaimanLipi_20-04-07.ttf', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{1F99EFD7-B602-141F-E39A-2A5397CE0124}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'Capture.JPG', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{2ECEA05D-73C6-AB0C-3767-2606EAFF55ED}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{E0F0AE1A-AECF-46C1-A148-4485036F3CCF}', '.picasa.ini', '{E7280448-E379-424E-A11D-357F4334AC8D}', '0000-00-00'),
+('{34FC189E-D6FF-354D-8A38-E1E70F358412}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{A4F96981-F014-46F6-BB93-87500C3CBB03}', 'de.pak', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{37884FC3-91EF-4D64-BCA0-B3513D999E9F}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'data com book2.pdf', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{391429E6-F2F0-F8D3-C612-2DAE7EA4B055}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/Hamma Hamma (Ok Jaanu) 320 Kbps Mp3 Song Free Download - FreeGana.Com.mp3', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{39C8CAC5-E6A1-D55D-6A38-FF341E1B5AC9}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/button5.png', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{3AEB4A28-EE10-B94F-E427-809E0C9765E9}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', '{9E2E6363-A0FF-4C0F-B58F-D162725FB702}', 'Capture.JPG', '{AF41CC9F-3BCD-4952-9D02-17184CC40C79}', '0000-00-00'),
+('{42DC2342-B085-F829-7D79-094ECDAA5F3C}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/Physics questions.pdf', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{442C11FE-D82A-11EB-AB9E-EE7CE11E02A2}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{A4F96981-F014-46F6-BB93-87500C3CBB03}', '.picasa.ini', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{4963D561-4B41-656F-5672-6FBB155983E1}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/high_sound.mp3', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{50A4DA7D-7817-BFB4-E6A0-FEEAC26B272E}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/20151118_002255.jpg', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{50F5769B-B0F8-4D12-6D4F-C67F245E780D}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/Sporsher_Baire_Tumi-Tahsan_And_Elita-Unreleased_FusionBD.Com.mp3', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{5AA824DE-CF0E-D9A6-22DC-8547FDF85DFC}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'routine.xlsx', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{5E9D2873-C29A-816A-3127-933FF7F2ACD2}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/SolaimanLipi_20-04-07.ttf', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{60D07D30-BD6A-0719-8AA0-4047956B882B}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/IMG_0331.3gp', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{61DDC379-34F8-7E9A-E006-21AB049D0983}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/1.JPG', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{6BE2B3D0-765D-36E0-03DA-0D3E69476474}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'ch10.ppt', '{E7280448-E379-424E-A11D-357F4334AC8D}', '0000-00-00'),
+('{755B374B-214C-746B-32DA-CEA670FDDD42}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/button5.png', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{76C4AF14-68C1-3009-96EB-6224757B50AB}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'Capture.JPG', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{7DB91ED8-021C-9B4E-46FF-68263C9DBA05}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{B51D020E-1BB9-4FA3-86BF-C32949367885}', 'line coding.pdf', '{560A0FC0-6221-497D-8D41-E584EE4BBEE3}', '0000-00-00'),
+('{80DBC159-01BC-6070-0536-DFCA7AB855D5}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'line coding_Forouzan.ppt', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{82CD40B3-7EE7-835F-C15A-FD6989219D31}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'ch10.ppt', '{E7280448-E379-424E-A11D-357F4334AC8D}', '0000-00-00'),
+('{87096356-096C-CF3C-FB15-88C9DD9CBDD5}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/ch03.ppt', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{8BA6FBA0-7D76-4E1D-3DDB-048FFCDB63D9}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/15774873_1237081523051895_7780478053184517739_o.jpg', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{8EFEDEDF-9A6F-0B27-07BD-B9D81DCE1E42}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{8104FB4F-8E63-489D-8D90-DB45A9A2327B}', 'line coding_Forouzan.ppt', '{560A0FC0-6221-497D-8D41-E584EE4BBEE3}', '0000-00-00'),
+('{8FE190F4-E7C4-5BAF-DD7B-7C50A44DB828}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'line coding_Forouzan.ppt', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{915C0D5C-0A01-0D19-AD18-30BC14E43923}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/logonew.png', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{93158BD9-C670-580C-35DE-58D276C27B7C}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{A4F96981-F014-46F6-BB93-87500C3CBB03}', 'line coding_Forouzan.ppt', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{95B2B7E1-31F2-1DCD-F1F2-6C2FCC927511}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'line coding_Forouzan.ppt', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{9A43E82B-C8EA-E997-4CE8-9B694628B85B}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'data com book2.pdf', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{A5A6578F-D42D-6CD7-E128-8C0B062601D9}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', 'line coding.pdf', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{A68541DC-0056-F00B-5DDB-4F93138A7C6E}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'ch03.ppt', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{AD5E33E1-1AF4-4F5A-214B-7405172FE4A0}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{B51D020E-1BB9-4FA3-86BF-C32949367885}', 'Capture.JPG', '{AF41CC9F-3BCD-4952-9D02-17184CC40C79}', '0000-00-00'),
+('{C1369E49-E617-7E8F-7C3B-2412A012DBE4}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/Sporsher_Baire_Tumi-Tahsan_And_Elita-Unreleased_FusionBD.Com.mp3', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{C44DC90D-A99B-D7DB-2E79-F0C2D69915AD}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', 'data com book1.pdf', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{D9E18540-7A3A-5958-BE73-4E0813F27680}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/button5.png', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{E1243D26-4432-E92C-9DB5-F3B021315234}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'routine.xlsx', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00'),
+('{E4B93ED8-2044-AB74-D7E5-122F82076706}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{B51D020E-1BB9-4FA3-86BF-C32949367885}', 'routine.xlsx', '{FFDB1CB8-AF34-4381-8971-9784DCB516C5}', '0000-00-00'),
+('{E5515170-5DC3-B41D-7BFD-A75B83DDE0FD}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'line coding_Forouzan.ppt', '{E7280448-E379-424E-A11D-357F4334AC8D}', '0000-00-00'),
+('{EC0508B0-F7DF-172A-247C-E4CE65CB9081}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'line coding.pdf', '{63F3C00B-6168-4FBD-AB01-7A1FE413BDDE}', '0000-00-00'),
+('{FFF2CAA8-F815-2F4C-1A38-958EE39B941A}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 'uploads/Sporsher_Baire_Tumi-Tahsan_And_Elita-Unreleased_FusionBD.Com.mp3', '{0CF37516-06FE-41CD-93AD-D2D1652509D6}', '0000-00-00');
+
+>>>>>>> version 2 change
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_file_assign`
+--
+
+CREATE TABLE `tbl_file_assign` (
+<<<<<<< b989aea6e102fa46ba9139b179dd166f171a0dda
+=======
+  `ID` varchar(50) NOT NULL,
+>>>>>>> version 2 change
+  `FileID` varchar(50) NOT NULL,
+  `FileComment` varchar(300) NOT NULL,
+  `IsApproved` tinyint(1) NOT NULL,
+  `IsRejected` tinyint(1) NOT NULL,
+<<<<<<< b989aea6e102fa46ba9139b179dd166f171a0dda
+=======
+  `PreviousUserID` varchar(40) NOT NULL,
+>>>>>>> version 2 change
+  `CurrentUserID` varchar(40) NOT NULL,
+  `IsPending` tinyint(1) NOT NULL,
+  `HasSeen` tinyint(1) NOT NULL,
+  `CreationDate` date NOT NULL,
+  `ApproveDate` date NOT NULL,
+  `AssignDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+<<<<<<< b989aea6e102fa46ba9139b179dd166f171a0dda
+=======
+--
+-- Dumping data for table `tbl_file_assign`
+--
+
+INSERT INTO `tbl_file_assign` (`ID`, `FileID`, `FileComment`, `IsApproved`, `IsRejected`, `PreviousUserID`, `CurrentUserID`, `IsPending`, `HasSeen`, `CreationDate`, `ApproveDate`, `AssignDate`) VALUES
+('{0B282006-BBC1-D1B0-8C5C-0C1E582F9F52}', '{EC0508B0-F7DF-172A-247C-E4CE65CB9081}', 'test', 0, 1, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 0, 1, '2017-04-04', '2017-04-10', '0000-00-00'),
+('{1F5EE03C-EEBC-390B-39C5-A342457C14C3}', '{C44DC90D-A99B-D7DB-2E79-F0C2D69915AD}', 'the 2nd try', 1, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 0, 1, '0000-00-00', '2017-04-11', '0000-00-00'),
+('{1FD2210B-647C-5ECF-B8D8-AE0106FDAFCE}', '{42DC2342-B085-F829-7D79-094ECDAA5F3C}', 'question', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{277D6D9C-316E-7CBE-312B-F44E78760B63}', '{82CD40B3-7EE7-835F-C15A-FD6989219D31}', '1st try!!', 1, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 0, 1, '0000-00-00', '2017-04-11', '0000-00-00'),
+('{2AD22DEF-7E5D-AB0C-A772-FDB381245C5E}', '{50F5769B-B0F8-4D12-6D4F-C67F245E780D}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{2F190589-9543-47D7-280F-1BEC6DC32FDE}', '{9A43E82B-C8EA-E997-4CE8-9B694628B85B}', 'hii', 1, 0, '{0B2F4F89-2048-4504-AB17-0412CC624A05}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 0, 1, '0000-00-00', '2017-04-11', '2017-04-11'),
+('{33CAED87-1EF4-8BC5-08CA-D10840BF0BA2}', '{1097DA30-A338-0244-5381-B38B492AB80E}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{3B9E421A-7D8D-D034-396B-043FDE0550AA}', '{82CD40B3-7EE7-835F-C15A-FD6989219D31}', '2nd try', 1, 0, '{0B2F4F89-2048-4504-AB17-0412CC624A05}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', 0, 1, '0000-00-00', '2017-04-11', '2017-04-11'),
+('{4056E082-A698-64B1-345F-D3381C81135D}', '{915C0D5C-0A01-0D19-AD18-30BC14E43923}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{4792A60A-F4AE-E689-E84F-CAB0FC8B41C1}', '{05BD4B2B-357B-447A-4D72-5E5F26280D69}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{496C6F64-5C0B-84EF-8E42-8D2CB4C2AD6C}', '{391429E6-F2F0-F8D3-C612-2DAE7EA4B055}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{4C811B67-F32B-F80C-DD4B-38112FAE3F43}', '{4963D561-4B41-656F-5672-6FBB155983E1}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{54BBBB02-F5A2-FE0A-C4FE-397C3B2C03D2}', '{A5A6578F-D42D-6CD7-E128-8C0B062601D9}', 'hi', 0, 1, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 0, 1, '0000-00-00', '2017-04-11', '0000-00-00'),
+('{7163F587-7525-D242-EF94-931F02E2D217}', '{0857FD3B-8032-9688-0FEB-26BA8D364759}', 'very good file', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{A4F96981-F014-46F6-BB93-87500C3CBB03}', 1, 0, '2017-04-07', '0000-00-00', '0000-00-00'),
+('{7AE607B8-B530-277E-CD7F-71927A15FC44}', '{5E9D2873-C29A-816A-3127-933FF7F2ACD2}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{815CD72F-043B-F14B-2003-4B0091C53931}', '{755B374B-214C-746B-32DA-CEA670FDDD42}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{8227FFEB-B2FC-8680-415C-5B5D17274692}', '{6BE2B3D0-765D-36E0-03DA-0D3E69476474}', '1st try!!', 1, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 0, 1, '0000-00-00', '2017-04-11', '0000-00-00'),
+('{8DB79A40-C66E-392E-899A-807A8265686F}', '{9A43E82B-C8EA-E997-4CE8-9B694628B85B}', 'its ok, hmm', 0, 1, '{0B2F4F89-2048-4504-AB17-0412CC624A05}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', 0, 1, '0000-00-00', '2017-04-11', '2017-04-11'),
+('{929B1BC8-FA95-B0B1-0B47-3B5CBCBF56BC}', '{11AFCE5D-BDAC-F778-3045-D6E58A4CDCC6}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{944A1F71-B257-7546-6662-86447ED0A70E}', '{D9E18540-7A3A-5958-BE73-4E0813F27680}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{9462BFD1-87A8-3D0B-0898-9DF5DD0161D9}', '{A5A6578F-D42D-6CD7-E128-8C0B062601D9}', '1', 1, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', 0, 1, '0000-00-00', '2017-04-10', '0000-00-00'),
+('{955B4471-6640-7D2C-B1E3-4551B60334E8}', '{87096356-096C-CF3C-FB15-88C9DD9CBDD5}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{9A446E91-FAD8-233C-0E82-2D9688764765}', '{13F13DDF-1986-7914-EA27-8B82AA1F721E}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{A447A2E5-CCB7-E26F-C630-9D328330DD88}', '{A5A6578F-D42D-6CD7-E128-8C0B062601D9}', '123456', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{A4F96981-F014-46F6-BB93-87500C3CBB03}', 1, 0, '0000-00-00', '0000-00-00', '2017-04-11'),
+('{AB56D065-2701-51F1-5A29-7A5A611121C0}', '{FFF2CAA8-F815-2F4C-1A38-958EE39B941A}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{B5182B28-F73A-320D-BF68-F6A841E44A57}', '{9A43E82B-C8EA-E997-4CE8-9B694628B85B}', 'ddd', 0, 1, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 0, 1, '2017-04-04', '2017-04-10', '0000-00-00'),
+('{B822762B-20A2-AC3D-ECAE-033C66B9AF87}', '{8BA6FBA0-7D76-4E1D-3DDB-048FFCDB63D9}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{C3B208A3-CF4E-F376-C461-C6C644C53758}', '{A68541DC-0056-F00B-5DDB-4F93138A7C6E}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{CC55FB55-99B8-2C0C-7261-3B58DBDB4FD2}', '{A5A6578F-D42D-6CD7-E128-8C0B062601D9}', 'whats up!!', 1, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 0, 1, '0000-00-00', '2017-04-11', '0000-00-00'),
+('{D1EFF9DA-B6F0-07E5-3CF8-6AFA13C5962F}', '{50A4DA7D-7817-BFB4-E6A0-FEEAC26B272E}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{D35D71A4-B3CE-E5BE-0DA2-E64F8580ED78}', '{A5A6578F-D42D-6CD7-E128-8C0B062601D9}', 'its ok', 1, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', 0, 1, '0000-00-00', '2017-04-11', '0000-00-00'),
+('{D965408A-BEB8-5ED2-07C2-0EA91F95627C}', '{C1369E49-E617-7E8F-7C3B-2412A012DBE4}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{DE3D14F0-A30C-3C94-3C42-CB93139DC5DA}', '{61DDC379-34F8-7E9A-E006-21AB049D0983}', 'nothing', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{DE87AEB3-001E-3251-7D4D-DCB5C03D4AB6}', '{60D07D30-BD6A-0719-8AA0-4047956B882B}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{ECECFAE0-BC8C-43E3-AA33-86A99EA8425F}', '{0CB6FC10-7121-57DA-FDE3-A84E1544C661}', 'r', 1, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', 0, 1, '2017-04-04', '2017-04-10', '0000-00-00'),
+('{F0994698-022D-478C-B8BE-32FD2EB106F4}', '{39C8CAC5-E6A1-D55D-6A38-FF341E1B5AC9}', '', 0, 0, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 1, 0, '0000-00-00', '0000-00-00', '0000-00-00'),
+('{F5EB2B27-358B-9DA2-3C6D-AFBAD44D6421}', '{C44DC90D-A99B-D7DB-2E79-F0C2D69915AD}', '12334', 0, 1, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', 0, 1, '2017-04-04', '2017-04-11', '0000-00-00'),
+('{FB364CA2-CE71-B3EE-52C3-118F1BAC913A}', '{9A43E82B-C8EA-E997-4CE8-9B694628B85B}', 'not good file!!', 1, 0, '{0B2F4F89-2048-4504-AB17-0412CC624A05}', '{0B2F4F89-2048-4504-AB17-0412CC624A05}', 0, 1, '0000-00-00', '2017-04-11', '0000-00-00');
+
+>>>>>>> version 2 change
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_marks_grade`
+--
+
+CREATE TABLE `tbl_marks_grade` (
+  `MarksMin` double NOT NULL,
+  `MarksMax` double NOT NULL,
+  `MarksGrade` varchar(10) NOT NULL,
+  `GPA` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_permission`
+--
+
+CREATE TABLE `tbl_permission` (
+  `ID` varchar(100) NOT NULL,
+  `Name` varchar(100) NOT NULL,
+  `Category` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_permission`
+--
+
+INSERT INTO `tbl_permission` (`ID`, `Name`, `Category`) VALUES
+('CLUB_C', 'CLUB_C', 'CLUB'),
+('CLUB_D', 'CLUB_D', 'CLUB'),
+('CLUB_R', 'CLUB_R', 'CLUB'),
+('CLUB_U', 'CLUB_U', 'CLUB'),
+('COURSE_C', 'COURSE_C', 'COURSE'),
+('COURSE_D', 'COURSE_D', 'COURSE'),
+('COURSE_R', 'COURSE_R', 'COURSE'),
+('COURSE_U', 'COURSE_U', 'COURSE'),
+('DISCIPLINE_C', 'DISCIPLINE_C', 'DISCIPLINE'),
+('DISCIPLINE_D', 'DISCIPLINE_D', 'DISCIPLINE'),
+('DISCIPLINE_R', 'DISCIPLINE_R', 'DISCIPLINE'),
+('DISCIPLINE_U', 'DISCIPLINE_U', 'DISCIPLINE'),
+('FILE_C', 'FILE_C', 'FILE'),
+('FILE_D', 'FILE_D', 'FILE'),
+('FILE_R', 'FILE_R', 'FILE'),
+('FILE_U', 'FILE_U', 'FILE'),
+('POSITION_C', 'POSITION_C', 'POSITION'),
+('POSITION_D', 'POSITION_D', 'POSITION'),
+('POSITION_R', 'POSITION_R', 'POSITION'),
+('POSITION_U', 'POSITION_U', 'POSITION'),
+('PROJECT_C', 'PROJECT_C', 'PROJECT'),
+('PROJECT_D', 'PROJECT_D', 'PROJECT'),
+('PROJECT_R', 'PROJECT_R', 'PROJECT'),
+('PROJECT_U', 'PROJECT_U', 'PROJECT'),
+('ROLE_C', 'ROLE_C', 'ROLE'),
+('ROLE_D', 'ROLE_D', 'ROLE'),
+('ROLE_R', 'ROLE_R', 'ROLE'),
+('ROLE_U', 'ROLE_U', 'ROLE'),
+('SCHOOL_C', 'SCHOOL_C', 'SCHOOL'),
+('SCHOOL_D', 'SCHOOL_D', 'SCHOOL'),
+('SCHOOL_R', 'SCHOOL_R', 'SCHOOL'),
+('SCHOOL_U', 'SCHOOL_U', 'SCHOOL'),
+('SESSION_C', 'SESSION_C', 'SESSION'),
+('SESSION_D', 'SESSION_D', 'SESSION'),
+('SESSION_R', 'SESSION_R', 'SESSION'),
+('SESSION_U', 'SESSION_U', 'SESSION'),
+('SURVEY_C', 'SURVEY_C', 'SURVEY'),
+('SURVEY_D', 'SURVEY_D', 'SURVEY'),
+('SURVEY_R', 'SURVEY_R', 'SURVEY'),
+('SURVEY_U', 'SURVEY_U', 'SURVEY'),
+('TERM_C', 'TERM_C', 'TERM'),
+('TERM_D', 'TERM_D', 'TERM'),
+('TERM_R', 'TERM_R', 'TERM'),
+('TERM_U', 'TERM_U', 'TERM'),
+('USER_C', 'USER_C', 'USER'),
+('USER_D', 'USER_D', 'USER'),
+('USER_R', 'USER_R', 'USER'),
+('USER_U', 'USER_U', 'USER'),
+('YEAR_C', 'YEAR_C', 'YEAR'),
+('YEAR_D', 'YEAR_D', 'YEAR'),
+('YEAR_R', 'YEAR_R', 'YEAR'),
+('YEAR_U', 'YEAR_U', 'YEAR');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_position`
+--
+
+CREATE TABLE `tbl_position` (
+  `ID` varchar(40) NOT NULL,
+  `Name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_position`
+--
+
+INSERT INTO `tbl_position` (`ID`, `Name`) VALUES
+('{1BFE76DB-C2AA-4FAA-A23B-F43E6150A2F6}', 'Section Officer'),
+('{2E024DF5-BD45-4EF2-A5E3-43BCA3E9777F}', 'Pro-vice Chancellor'),
+('{64D25DDA-16B6-47B8-BBFC-4E2AAF5680C7}', 'Assistant Professor'),
+('{7CDA1F32-A2F8-4469-B5A8-C2038FCE1F9A}', 'Lecturer'),
+('{818DE12F-60CC-42E4-BAEC-48EAAED65179}', 'Dean of School'),
+('{928EE9FF-E02D-470F-9A6A-AD0EB38B848F}', 'Vice Chancellor'),
+('{92FDDA3F-1E91-4AA3-918F-EB595F85790C}', 'Daywise Worker'),
+('{932CB0EE-76C2-448E-A40E-2D167EECC479}', 'Registrar'),
+('{ADA027D3-21C1-47AF-A21D-759CAFCFE58D}', 'Assistant Registrar'),
+('{B76EB035-EA26-4CEB-B029-1C6129574D98}', 'Librarian'),
+('{B78C7A7B-4D38-4025-8170-7B8C9F291946}', 'Head of Discipline'),
+('{C27B6BCF-FB83-4F3D-85CA-B7870D8B12D0}', 'Associate Professor'),
+('{EB4880E2-01B3-4C6E-A2C9-89B6E5427C0A}', 'Professor');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_project`
+--
+
+CREATE TABLE `tbl_project` (
+  `ID` varchar(40) NOT NULL,
+  `Title` varchar(100) NOT NULL,
+  `Description` varchar(200) NOT NULL,
+  `Link` varchar(200) NOT NULL,
+  `Tag` varchar(200) NOT NULL,
+  `CourseID` varchar(40) NOT NULL,
+  `TermID` varchar(40) NOT NULL,
+  `SessionID` varchar(40) NOT NULL,
+  `CreationDate` date NOT NULL,
+  `ProjectDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+<<<<<<< b989aea6e102fa46ba9139b179dd166f171a0dda
+=======
+--
+-- Dumping data for table `tbl_project`
+--
+
+INSERT INTO `tbl_project` (`ID`, `Title`, `Description`, `Link`, `Tag`, `CourseID`, `TermID`, `SessionID`, `CreationDate`, `ProjectDate`) VALUES
+('03', 'dw', 'cds', 'cd', 'PHP', '3201', '2_2', 'sds', '2017-03-01', '2017-03-24'),
+('14', 'ffdr', 'cd', 'cds', 'ced', 'ced', 'cedw', 'cfr', '2017-03-05', '2017-03-29'),
+('456', 'yy', 'uu', 'hjj', 'Java', '90', '1_2', '90', '2017-03-01', '2017-03-30');
+
+>>>>>>> version 2 change
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_project_student`
+--
+
+CREATE TABLE `tbl_project_student` (
+  `ProjectID` varchar(40) NOT NULL,
+  `StudentID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_question_archive`
+--
+
+CREATE TABLE `tbl_question_archive` (
+  `ID` varchar(40) NOT NULL,
+  `Title` varchar(50) NOT NULL,
+  `CourseID` varchar(40) NOT NULL,
+  `TermID` varchar(40) NOT NULL,
+  `SessionID` varchar(40) NOT NULL,
+  `TeacherID` varchar(40) NOT NULL,
+  `Type` varchar(20) NOT NULL,
+  `Tag` varchar(200) NOT NULL,
+  `QuestionDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_registration_session`
+--
+
+CREATE TABLE `tbl_registration_session` (
+  `ID` varchar(40) NOT NULL,
+  `Name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_resource`
+--
+
+CREATE TABLE `tbl_resource` (
+  `ID` varchar(40) NOT NULL,
+  `Name` varchar(40) NOT NULL,
+  `Type` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_role`
+--
+
+CREATE TABLE `tbl_role` (
+  `ID` varchar(40) NOT NULL,
+  `Name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_role`
+--
+
+INSERT INTO `tbl_role` (`ID`, `Name`) VALUES
+('{1AF8A832-4C03-49C7-8071-C71D4EB4FC57}', 'Staff'),
+('{3477F777-3F53-408B-9773-249C5937C2B8}', 'Teacher'),
+('{9CC63B6A-99BD-4710-B675-9881B5F7337A}', 'Student'),
+('{F9C458F2-5298-441F-AE63-7514029760C4}', 'Admin');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_role_permission`
+--
+
+CREATE TABLE `tbl_role_permission` (
+  `Row` int(11) NOT NULL,
+  `RoleID` varchar(40) NOT NULL,
+  `PermissionID` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_role_permission`
+--
+
+INSERT INTO `tbl_role_permission` (`Row`, `RoleID`, `PermissionID`) VALUES
+(225, '{3477F777-3F53-408B-9773-249C5937C2B8}', 'COURSE_C'),
+(226, '{3477F777-3F53-408B-9773-249C5937C2B8}', 'COURSE_D'),
+(227, '{3477F777-3F53-408B-9773-249C5937C2B8}', 'FILE_C'),
+(228, '{3477F777-3F53-408B-9773-249C5937C2B8}', 'FILE_D'),
+(229, '{3477F777-3F53-408B-9773-249C5937C2B8}', 'FILE_R'),
+(230, '{3477F777-3F53-408B-9773-249C5937C2B8}', 'FILE_U'),
+(231, '{3477F777-3F53-408B-9773-249C5937C2B8}', 'POSITION_C'),
+(232, '{3477F777-3F53-408B-9773-249C5937C2B8}', 'POSITION_D'),
+(233, '{3477F777-3F53-408B-9773-249C5937C2B8}', 'POSITION_R'),
+(234, '{3477F777-3F53-408B-9773-249C5937C2B8}', 'POSITION_U'),
+(441, '{1AF8A832-4C03-49C7-8071-C71D4EB4FC57}', 'FILE_C'),
+(442, '{1AF8A832-4C03-49C7-8071-C71D4EB4FC57}', 'FILE_D'),
+(443, '{1AF8A832-4C03-49C7-8071-C71D4EB4FC57}', 'SURVEY_U'),
+(444, '{1AF8A832-4C03-49C7-8071-C71D4EB4FC57}', 'TERM_U'),
+(557, '{9CC63B6A-99BD-4710-B675-9881B5F7337A}', 'CLUB_D'),
+(558, '{9CC63B6A-99BD-4710-B675-9881B5F7337A}', 'CLUB_R'),
+(559, '{9CC63B6A-99BD-4710-B675-9881B5F7337A}', 'COURSE_D'),
+(560, '{9CC63B6A-99BD-4710-B675-9881B5F7337A}', 'PROJECT_C'),
+(561, '{9CC63B6A-99BD-4710-B675-9881B5F7337A}', 'PROJECT_D'),
+(562, '{9CC63B6A-99BD-4710-B675-9881B5F7337A}', 'PROJECT_R'),
+(563, '{9CC63B6A-99BD-4710-B675-9881B5F7337A}', 'PROJECT_U'),
+(564, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'CLUB_C'),
+(565, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'CLUB_D'),
+(566, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'CLUB_R'),
+(567, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'CLUB_U'),
+(568, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'COURSE_C'),
+(569, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'COURSE_D'),
+(570, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'COURSE_R'),
+(571, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'COURSE_U'),
+(572, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'DISCIPLINE_C'),
+(573, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'DISCIPLINE_D'),
+(574, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'DISCIPLINE_R'),
+(575, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'DISCIPLINE_U'),
+(576, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'FILE_C'),
+(577, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'FILE_D'),
+(578, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'FILE_R'),
+(579, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'FILE_U'),
+(580, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'POSITION_C'),
+(581, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'POSITION_D'),
+(582, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'POSITION_R'),
+(583, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'POSITION_U'),
+(584, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'PROJECT_C'),
+(585, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'PROJECT_D'),
+(586, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'PROJECT_R'),
+(587, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'PROJECT_U'),
+(588, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'ROLE_C'),
+(589, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'ROLE_D'),
+(590, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'ROLE_R'),
+(591, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'ROLE_U'),
+(592, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'SCHOOL_C'),
+(593, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'SCHOOL_D'),
+(594, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'SCHOOL_R'),
+(595, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'SCHOOL_U'),
+(596, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'SESSION_C'),
+(597, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'SESSION_D'),
+(598, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'SESSION_R'),
+(599, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'SESSION_U'),
+(600, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'SURVEY_C'),
+(601, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'SURVEY_D'),
+(602, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'SURVEY_R'),
+(603, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'SURVEY_U'),
+(604, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'TERM_C'),
+(605, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'TERM_D'),
+(606, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'TERM_R'),
+(607, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'TERM_U'),
+(608, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'USER_C'),
+(609, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'USER_D'),
+(610, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'USER_R'),
+(611, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'USER_U'),
+(612, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'YEAR_C'),
+(613, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'YEAR_D'),
+(614, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'YEAR_R'),
+(615, '{F9C458F2-5298-441F-AE63-7514029760C4}', 'YEAR_U');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_routine`
+--
+
+CREATE TABLE `tbl_routine` (
+  `DayID` varchar(40) NOT NULL,
+  `TimeID` varchar(40) NOT NULL,
+  `CourseID` varchar(40) NOT NULL,
+  `TermID` varchar(40) NOT NULL,
+  `SlotNo` int(11) NOT NULL,
+  `TeacherID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_routine_day`
+--
+
+CREATE TABLE `tbl_routine_day` (
+  `ID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_routine_time`
+--
+
+CREATE TABLE `tbl_routine_time` (
+  `ID` varchar(40) NOT NULL,
+  `Name` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_school`
+--
+
+CREATE TABLE `tbl_school` (
+  `ID` varchar(40) NOT NULL,
+  `Name` varchar(50) NOT NULL,
+  `DeanID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_school`
+--
+
+INSERT INTO `tbl_school` (`ID`, `Name`, `DeanID`) VALUES
+('{39DDC0C2-CFC2-4246-8748-8812B1751A5C}', 'Science Engineering and Technology', ''),
+('{4D46079B-AFA3-40F1-B8D1-6CC9E9F56812}', 'Life Science', ''),
+('{86E0F021-B30D-48D2-B177-247180633C5E}', 'Social Science', ''),
+('{879375F7-0A15-4705-AC90-C6786D279EF1}', 'Law and Humanities', ''),
+('{CE09AA38-205B-4F50-A0E0-14DB8686C912}', 'Fine Arts', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_survey`
+--
+
+CREATE TABLE `tbl_survey` (
+  `ID` varchar(40) NOT NULL,
+  `Title` varchar(100) NOT NULL,
+  `Description` varchar(300) NOT NULL,
+  `Link` varchar(100) NOT NULL,
+  `TotalQuestions` int(11) NOT NULL,
+  `CreatorID` varchar(40) NOT NULL,
+  `CreationDate` date NOT NULL,
+  `CompletionDate` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_survey_question`
+--
+
+CREATE TABLE `tbl_survey_question` (
+  `ID` varchar(40) NOT NULL,
+  `SurveyID` varchar(40) NOT NULL,
+  `QuestionNo` int(11) NOT NULL,
+  `QuestionType` varchar(20) NOT NULL,
+  `IsVisible` tinyint(1) NOT NULL,
+  `IsRequired` tinyint(1) NOT NULL,
+  `QuestionValue` varchar(300) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_survey_question_filled`
+--
+
+CREATE TABLE `tbl_survey_question_filled` (
+  `ID` int(11) NOT NULL,
+  `SurveyID` varchar(40) NOT NULL,
+  `QuestionID` varchar(40) NOT NULL,
+  `FilledValue` varchar(200) NOT NULL,
+  `FilledUserID` varchar(40) NOT NULL,
+  `FilledTime` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_survey_question_type`
+--
+
+CREATE TABLE `tbl_survey_question_type` (
+  `ID` varchar(40) NOT NULL,
+  `Type` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_survey_question_type`
+--
+
+INSERT INTO `tbl_survey_question_type` (`ID`, `Type`) VALUES
+('ques_dropdown', 'Dropdown'),
+('ques_radio', 'Radio'),
+('ques_textInput', 'Text Input');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_term`
+--
+
+CREATE TABLE `tbl_term` (
+  `ID` varchar(40) NOT NULL,
+  `Name` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_term`
+--
+
+INSERT INTO `tbl_term` (`ID`, `Name`) VALUES
+('{19B15CDF-264C-4924-8608-258673BCC448}', 'B.Sc 8th'),
+('{22EDE2D2-D36C-4160-9D2A-80184B8AD35B}', 'B.Sc 1st'),
+('{298E9628-8DE2-4742-8F93-0491C01BB152}', 'M.Sc 1st'),
+('{9C84629E-11FA-4459-A593-C9AD9CF0D3F2}', 'B.Sc 4th'),
+('{9D35C1A5-8091-47BE-AF7E-160C95789EC3}', 'B.Sc 7th'),
+('{B8541009-29AC-4988-B17B-91CA3E1E27E3}', 'B.Sc 5th'),
+('{C0C2FBD3-75DB-4A6F-BB2A-3F131027A744}', 'B.Sc 6th'),
+('{E2D0D30D-654E-4157-8F71-527023AFAB2F}', 'B.Sc 3rd'),
+('{F3C92204-C532-4544-9729-858EFBED98A1}', 'M.Sc 3rd'),
+('{F78D6E1A-8B11-46D3-A88A-BD6D8DA4532B}', 'M.Sc 2nd'),
+('{F9121C67-1E89-4F0B-80AA-89FD3B6BD665}', 'B.Sc 2nd');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user`
+--
+
+CREATE TABLE `tbl_user` (
+  `ID` varchar(40) NOT NULL,
+  `UniversityID` varchar(20) NOT NULL,
+  `Email` varchar(50) NOT NULL,
+  `Password` varchar(20) NOT NULL,
+  `FirstName` varchar(50) NOT NULL,
+  `LastName` varchar(50) NOT NULL,
+  `IsArchived` tinyint(1) NOT NULL,
+  `IsDeleted` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_user`
+--
+
+INSERT INTO `tbl_user` (`ID`, `UniversityID`, `Email`, `Password`, `FirstName`, `LastName`, `IsArchived`, `IsDeleted`) VALUES
+('{0B2F4F89-2048-4504-AB17-0412CC624A05}', '020215', 'mohidul@gmail.com', 'test', 'SM Mohidul', 'Islam          ', 0, 0),
+('{8104FB4F-8E63-489D-8D90-DB45A9A2327B}', '020203', 'zahid@gmail.com', 'test', 'Md. Zahid', 'Islam     ', 0, 0),
+('{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '020229', 'mkazi078@uottawa.ca', 'test', 'Kazi Masudul', 'Alam           ', 0, 0),
+('{9E2E6363-A0FF-4C0F-B58F-D162725FB702}', '020216', 'alamgir@gmail.com', 'test', 'Sk Alamgir', 'Hossain   ', 0, 0),
+('{A4F96981-F014-46F6-BB93-87500C3CBB03}', '020208', 'aakth072@uottawa.ca', 'test', 'Aysha', 'Akther     ', 0, 0),
+('{B51D020E-1BB9-4FA3-86BF-C32949367885}', '040212', 'saikat@gmail.com', 'test', 'Saikat', 'Mondal  ', 0, 0),
+('{E0F0AE1A-AECF-46C1-A148-4485036F3CCF}', 'e020202', 'rafiq@gmail.com', 'test', 'Md. Rafiqul', 'Islam ', 0, 0),
+('{EC675CB7-2551-4062-A79E-0EF15481D38A}', 'test new!', 'test@gmail.com', 'test', 'test', 'test ', 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user_discipline`
+--
+
+CREATE TABLE `tbl_user_discipline` (
+  `UserID` varchar(40) NOT NULL,
+  `DisciplineID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user_position`
+--
+
+CREATE TABLE `tbl_user_position` (
+  `ID` int(11) NOT NULL,
+  `UserID` varchar(40) NOT NULL,
+  `PositionID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_user_position`
+--
+
+INSERT INTO `tbl_user_position` (`ID`, `UserID`, `PositionID`) VALUES
+(1, '{9E2E6363-A0FF-4C0F-B58F-D162725FB702}', '{C27B6BCF-FB83-4F3D-85CA-B7870D8B12D0}'),
+(4, '{693F944F-328D-433A-9F94-459D92841645}', '{EB4880E2-01B3-4C6E-A2C9-89B6E5427C0A}'),
+(10, '{8104FB4F-8E63-489D-8D90-DB45A9A2327B}', '{64D25DDA-16B6-47B8-BBFC-4E2AAF5680C7}'),
+(11, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{64D25DDA-16B6-47B8-BBFC-4E2AAF5680C7}'),
+(13, '{B51D020E-1BB9-4FA3-86BF-C32949367885}', '{64D25DDA-16B6-47B8-BBFC-4E2AAF5680C7}'),
+(14, '{E0F0AE1A-AECF-46C1-A148-4485036F3CCF}', '{EB4880E2-01B3-4C6E-A2C9-89B6E5427C0A}'),
+(16, '{A4F96981-F014-46F6-BB93-87500C3CBB03}', '{7CDA1F32-A2F8-4469-B5A8-C2038FCE1F9A}'),
+(17, '{0B2F4F89-2048-4504-AB17-0412CC624A05}', '{64D25DDA-16B6-47B8-BBFC-4E2AAF5680C7}');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_user_role`
+--
+
+CREATE TABLE `tbl_user_role` (
+  `ID` int(11) NOT NULL,
+  `UserID` varchar(40) NOT NULL,
+  `RoleID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_user_role`
+--
+
+INSERT INTO `tbl_user_role` (`ID`, `UserID`, `RoleID`) VALUES
+(40, '{8104FB4F-8E63-489D-8D90-DB45A9A2327B}', '{3477F777-3F53-408B-9773-249C5937C2B8}'),
+(41, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{3477F777-3F53-408B-9773-249C5937C2B8}'),
+(42, '{8B24B76D-9969-4F71-ABC4-6EE59355C686}', '{F9C458F2-5298-441F-AE63-7514029760C4}'),
+(43, '{B51D020E-1BB9-4FA3-86BF-C32949367885}', '{3477F777-3F53-408B-9773-249C5937C2B8}'),
+(44, '{E0F0AE1A-AECF-46C1-A148-4485036F3CCF}', '{3477F777-3F53-408B-9773-249C5937C2B8}'),
+(47, '{A4F96981-F014-46F6-BB93-87500C3CBB03}', '{3477F777-3F53-408B-9773-249C5937C2B8}'),
+(48, '{0B2F4F89-2048-4504-AB17-0412CC624A05}', '{3477F777-3F53-408B-9773-249C5937C2B8}'),
+(49, '{0B2F4F89-2048-4504-AB17-0412CC624A05}', '{9CC63B6A-99BD-4710-B675-9881B5F7337A}');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_video`
+--
+
+CREATE TABLE `tbl_video` (
+  `ID` varchar(40) NOT NULL,
+  `Title` varchar(150) NOT NULL,
+  `Description` varchar(300) NOT NULL,
+  `TagID` varchar(40) NOT NULL,
+  `Link` varchar(150) NOT NULL,
+  `IsEmbed` tinyint(1) NOT NULL,
+  `CreationDate` date NOT NULL,
+  `CreatorID` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_video_comment`
+--
+
+CREATE TABLE `tbl_video_comment` (
+  `CommentID` varchar(40) NOT NULL,
+  `Comment` varchar(150) NOT NULL,
+  `CreatorID` varchar(40) NOT NULL,
+  `VideoID` varchar(40) NOT NULL,
+  `CommentIDTop` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_video_tag`
+--
+
+CREATE TABLE `tbl_video_tag` (
+  `VideoID` varchar(40) NOT NULL,
+  `Tag` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `tbl_club`
+--
+ALTER TABLE `tbl_club`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_course`
+--
+ALTER TABLE `tbl_course`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_course_sessional_type`
+--
+ALTER TABLE `tbl_course_sessional_type`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_course_type`
+--
+ALTER TABLE `tbl_course_type`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_discipline`
+--
+ALTER TABLE `tbl_discipline`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_discussion`
+--
+ALTER TABLE `tbl_discussion`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_discussion_category`
+--
+ALTER TABLE `tbl_discussion_category`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_discussion_comment`
+--
+ALTER TABLE `tbl_discussion_comment`
+  ADD PRIMARY KEY (`CommentID`);
+
+--
+-- Indexes for table `tbl_file`
+--
+ALTER TABLE `tbl_file`
+  ADD PRIMARY KEY (`ID`);
+
+--
+<<<<<<< b989aea6e102fa46ba9139b179dd166f171a0dda
+=======
+-- Indexes for table `tbl_file_assign`
+--
+ALTER TABLE `tbl_file_assign`
+  ADD PRIMARY KEY (`ID`);
+
+--
+>>>>>>> version 2 change
+-- Indexes for table `tbl_permission`
+--
+ALTER TABLE `tbl_permission`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_position`
+--
+ALTER TABLE `tbl_position`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_project`
+--
+ALTER TABLE `tbl_project`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_resource`
+--
+ALTER TABLE `tbl_resource`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_role`
+--
+ALTER TABLE `tbl_role`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_role_permission`
+--
+ALTER TABLE `tbl_role_permission`
+  ADD PRIMARY KEY (`Row`);
+
+--
+-- Indexes for table `tbl_survey`
+--
+ALTER TABLE `tbl_survey`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_survey_question_filled`
+--
+ALTER TABLE `tbl_survey_question_filled`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_survey_question_type`
+--
+ALTER TABLE `tbl_survey_question_type`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_term`
+--
+ALTER TABLE `tbl_term`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_user`
+--
+ALTER TABLE `tbl_user`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_user_position`
+--
+ALTER TABLE `tbl_user_position`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_user_role`
+--
+ALTER TABLE `tbl_user_role`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `tbl_video`
+--
+ALTER TABLE `tbl_video`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `tbl_role_permission`
+--
+ALTER TABLE `tbl_role_permission`
+  MODIFY `Row` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=616;
+--
+-- AUTO_INCREMENT for table `tbl_survey_question_filled`
+--
+ALTER TABLE `tbl_survey_question_filled`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `tbl_user_position`
+--
+ALTER TABLE `tbl_user_position`
+<<<<<<< b989aea6e102fa46ba9139b179dd166f171a0dda
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+=======
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+>>>>>>> version 2 change
+--
+-- AUTO_INCREMENT for table `tbl_user_role`
+--
+ALTER TABLE `tbl_user_role`
+<<<<<<< b989aea6e102fa46ba9139b179dd166f171a0dda
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+=======
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+>>>>>>> version 2 change
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
